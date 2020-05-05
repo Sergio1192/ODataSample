@@ -15,14 +15,7 @@ namespace ODataSample.Controllers
         [IncludeCount]
         public ActionResult<ResponseModel<Student>> Get([FromQuery] Filter myFilter, ODataQueryOptions<Student> filter)
         {
-            var list = new List<Student>
-            {
-                new Student("Cody Allen", 130, "CEU"),
-                new Student("Todd Ostermeier", 160, "CEU"),
-                new Student("Chris Pandya", 140, "CEU"),
-                new Student("Sergio Merino", 200, "San Jaime"),
-                new Student("David Merino", 190, "San Jaime"),
-            };
+            var list = Student.GetStudents();
 
             var response = filter.ApplyTo(list);
 

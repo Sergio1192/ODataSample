@@ -18,19 +18,9 @@ namespace ODataSample.Controllers
         [EnableQuery]
         public IActionResult Get()
         {
-            var list = new List<Student>
-            {
-                CreateNewStudent("Cody Allen", 130),
-                CreateNewStudent("Todd Ostermeier", 160),
-                CreateNewStudent("Chris Pandya", 140)
-            };
+            var list = Student.GetStudents();
 
             return Ok(list);
-        }
-
-        private static Student CreateNewStudent(string name, int score)
-        {
-            return new Student(name, score, "CEU");
         }
     }
 }

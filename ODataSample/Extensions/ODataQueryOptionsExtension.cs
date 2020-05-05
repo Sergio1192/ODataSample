@@ -1,19 +1,19 @@
 ﻿using Microsoft.AspNet.OData.Extensions;
 using ODataSample.Models;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 
 namespace Microsoft.AspNet.OData.Query
 {
     public static class ODataQueryOptionsExtension
     {
-        public static ResponseModel<T> ApplyTo<T>(this ODataQueryOptions<T> filter, IEnumerable<T> data)
+        public static ResponseModel<dynamic> ApplyTo(this ODataQueryOptions filter, IEnumerable data)
         {
             var response = filter.ApplyTo(data.AsQueryable());
             var count = filter.Request.ODataFeature().TotalCount;
 
-            return new ResponseModel<T>() { Value = response.Cast<T>(), TotalCount = Convert.ToInt16(count) };
+            return new ResponseModel<dynamic>() { Value = response.Cast<dynamic>(), TotalCount = Convert.ToInt32(count) };
         }
     }
 }
